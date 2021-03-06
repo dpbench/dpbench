@@ -4,11 +4,23 @@
 
 A proxy is not the simplest component to test because it requires both a client and a server, and the whole behavior and observed performance are in fact those of the whole chain from the client, its operating system, the network, the proxy's operating system, the proxy, the network to the server, the server's operating system and finaly the server itself. All these elements require great care and will often not work in optimal conditions by default. Sometimes a simple reboot or down/up cycle on an interface can be enough to cause the loss of some fine settings that managed to stabilize the platform.
 
-As it is very difficult to figure where the limits are, it is highly recommended to use two clients and two servers. This way it becomes possible to observe the effect of adding or removing one of each, and to compare them:
+As it is very difficult to figure where the limits are, it is highly recommended to use two clients and two servers: <p align="center"><img src="data/2cli2srv.png?raw=true" alt="Setup involving two clients and two servers" /></p>
+
+This way it becomes possible to observe the effect of adding or removing one of each, and to compare them:
   - if one chain works well and the other works poorly, it can help figure a cause at the system or network level ;
   - if the load reached using two clients and two servers isn't significantly higher than the load reached with only one of each, it is often reasonable to assume that the tested component becomes the limiting factor ;
 
-Given that HTTP traffic is highly asymmetric, it often makes sense to place both the clients and the servers on the same machines, and make full use of the network. Then testing the connectivity requires to cross the traffic between client1 and server2, and client2 and server1. For small setups this can also be done with a single machine, but then it is impossible to validate the network, as all the traffic between the client and the server will remain inside the test machine. This can be fine once the platform is trusted though, especially for developers who want to periodically test the effect of their changes.
+<p align="center"><img src="data/2cli2srv-cmp.png?raw=true" alt="Validating that all paths work as expected" /></p>
+
+Given that HTTP traffic is highly asymmetric, it often makes sense to place both the clients and the servers on the same machines, and make full use of the network.
+
+<p align="center"><img src="data/2cli2srv-cross.png?raw=true" alt="Same using only two machines" /></p>
+
+Then testing the connectivity requires to cross the traffic between client1 and server2, and client2 and server1:
+
+<p align="center"><img src="data/2cli2srv-val.png?raw=true" alt="Same using only two machines" /></p>
+
+For small setups this can also be done with a single machine, but then it is impossible to validate the network, as all the traffic between the client and the server will remain inside the test machine. This can be fine once the platform is trusted though, especially for developers who want to periodically test the effect of their changes.
 
 
 ## The importance of latency
@@ -18,6 +30,8 @@ In modern architectures, proxies are installed at many layers, and they can be c
 While most tools will provide various metrics such as connect time, time-to-first-byte, total time, each with minimum, maximum, average, mean, standard deviation or even percentiles, the issue is that these ones must not be measured on the load generation tools when these tools are driven at high rates. Indeed, this measurement includes the whole chain again, and will include the queuing of requests in the client's network stack, and the queueing of returned responses in the server's stack, both of which can vary a lot under load.
 
 The ideal way to proceed is to have an extra load generator and server working at a much smaller load, typically 1%, collecting these metrics. This is the fairest way to measure the impact on user experience of a device under load because this will almost only include the device itself. It is not always easy nor possible to add such an extra machine running at low load, because it may require some configuration on the proxy, or because the architecture doesn't easily allow to add components. The only solution in this case is to measure the response time between the client and the server at the same loads and to superimpose the graphs so that it becomes possible to verify what is the reference and what extra delay is attributed to the insertion of the proxy.
+
+<p align="center"><img src="data/2cli2srv-ref.png?raw=true" alt="Measuring direct latency" /></p>
 
 Measuring a proxy's latency requires to place it in the same condition as its targetted environment. First, the latency is only meaningful at the target load (though it may indicate how the conditions may degrade during an unexpected event). Indeed, the latency measured at maximum load suffers a queuing effect and will in fact measure the sum of all queued operations that get delayed due to limited processing capacity. Second, the target architecture needs to be matched. If the component is planned to be set up as a reverse proxy in front of the server, it probably needs to have its own machine, and must be tested this way, where latency measurements will include the operating system and hardware. If it's planned to be installed as a side car, it may need to be placed on a dedicated machine along with the application, possibly modelled via another reference proxy. As this becomes more difficult to set up, it's often better to install the proxy either directly on the server if it plans to mostly receive requests from the external world to the server, or to place it on the client if it plans to mostly receive outgoing requests from a local application. However, such setups become particularly difficult to measure because of the required coexistence of the component being tested with stress-test tools that possibly behave much differently than an application at the operating system level. They may for example require more threads or require different operating system tuning than the target, and significantly affect the measurement.
 

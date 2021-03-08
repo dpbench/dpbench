@@ -110,6 +110,39 @@ double the number of local sockets, or competition for running on
 certain CPUs.
 
 
+## Reporting (graphs)
+
+Please see the [reporting subdirectory](reporting/) to find some
+pre-packaged graph suites.
+
+Reporting is extremely important as it allows to visually spot something that
+does not work as it should. Any single test should be graphed, this is a time
+saver as it allows to immediately fix an issue and restart it instead of
+executing hundreds of tests on an incorrect setup and having to redo them all.
+
+Different tools provide different output formats and may need to be graphed
+differently. Plenty of utilities are suited to the task but usually what takes
+time is to adapt the graphs to make them easily reproducible.
+
+The purpose of what is in the "reporting" directory is to provide quickly
+reproducible graphs for various tools' outputs, and to make them easily
+adaptable to different needs.
+
+Among the well-known utilities, [gnuplot](http://www.gnuplot.info/) is
+indisputably the most versatile and most widely used one as virtually every
+published scientific graph comes from it. It is packaged and available on
+all operating systems with multiple output drivers including SVG and PNG, and
+is easy to tailor for a wide spectrum of needs. It is not always easy to start
+with due to its rich feature set, thus some working scripts are provided for
+it in the [reporting/gunplot](reporting/gnuplot) subdirectory, hoping that
+they can be used as-is and also serve as templates to write new ones.
+
+There is also a wide choice of dynamic graph tools which work in browsers.
+These can be convenient during the tests, to monitor that everything works as
+expected but many of them will make automation complicated, especially when it
+comes to assembling multiple metrics.
+
+
 ## Links to various clients:
 
 | Name | License | HTTP | SSL | Ramp-up/Stop | Stop on | Rate limiting | Periodic reports | Stats | Notes |

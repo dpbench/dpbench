@@ -35,3 +35,25 @@ Output will be sent to cpu-proxy1-test13-64kB.out and the command to cpu-proxy1-
 1615227604  1  0 900036 4229436 1804916 4190060    0    0     0     0  603 2425  0  0 99  0  0
 1615227605  0  0 900036 4229436 1804920 4190060    0    0     0    48 1025 3851  0  1 98  1  0
 ```
+
+
+## `cpu-mhz.sh`
+This simple script collects the reported CPU frequency in MHz from /proc every
+second. The main use case is to verify if some CPU throttling happens during
+a test and would explain some irregularities (due to thermall throttling or
+because too much time is spent at the maximum configured TDP, which typically
+happens during expensive crypto operations).
+
+Example: collect each core's frequency in MHz every second for 3 minutes, timestamped:
+
+```sh
+$ ./run-timed.sh -d -t 180 mhz proxy1 test13-64kB -- ./cpu-mhz.sh
+Output will be sent to mhz-proxy1-test13-64kB.out and the command to mhz-proxy1-test13-64kB.cmd.
+### Starting at Mon Mar  8 19:29:54 CET 2021, redirecting to mhz-proxy1-test13-64kB.out ###
+1615228194 4160.483 4200.171 4036.999 4113.184 4200.620 4165.492 4200.547 4027.275
+1615228195 4204.165 4143.078 4149.166 4181.251 4033.544 3997.636 4105.573 4023.185
+1615228196 4035.986 4095.857 4139.943 4039.891 4100.183 4072.915 4150.845 3872.668
+1615228197 4128.544 4133.981 4092.641 4142.184 4187.916 4200.390 4181.989 4173.180
+1615228198 4131.803 4145.898 4203.000 4128.129 4181.092 4200.619 4192.496 4191.668
+1615228199 4200.306 4067.477 4200.441 4201.112 4194.046 4202.486 4193.853 4197.543
+```

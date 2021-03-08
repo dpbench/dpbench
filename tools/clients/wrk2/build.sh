@@ -1,6 +1,7 @@
 #!/bin/sh
 
 cd -P $(dirname $0)
+BIN="${PWD%/*/*/*}/bin"
 
 run() {
   echo "  RUN   $*"
@@ -21,16 +22,15 @@ nproc=$(nproc 2>/dev/null)
 [ -n "$nproc" -a -z "${nproc##[0-9]*}" ] || nproc=1
 
 cd source
-if make -j$nproc && mkdir -p ../bin && cp -v wrk ../bin/wrk2; then
+if make -j$nproc && mkdir -p "$BIN" && cp -v wrk "$BIN"/wrk2; then
   make clean
   cd ..
   echo
-  echo "Done! The wrk2 executable is now in $PWD/bin"
+  echo "Done! The wrk2 executable is now in $BIN"
   exit 0
 else
   echo
   echo "Failed! Please try to fix build errors and start again, or copy the"
-  echo "'wrk' executable into bin/wrk2"
+  echo "'wrk' executable into $BIN/wrk2"
   exit 1
 fi
-

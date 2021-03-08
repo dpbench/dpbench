@@ -1,5 +1,7 @@
 #!/bin/sh
 
+cd -P $(dirname $0)
+
 run() {
   echo "  RUN   $*"
   command "$@"

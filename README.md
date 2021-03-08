@@ -2,6 +2,17 @@
 
 **dpbench** is a dataplane benchmark suite trying to cover all aspects of running a benchmark on a low-level component which is usually sensitive to system tuning and test methodology, in order to help users establish trustable results that they can use to size their production, to optimize their architecture for a better user experience, or to figure their margin before the users experience suffers.
 
+# Quick setup for the impatient
+A quick shortcut to build all provided tools for those already accustomed to the project is the following:
+
+```sh
+$ git clone https://github.com/dpbench/dpbench
+$ cd dpbench
+$ git submodule init && git submodule update
+$ ./tools/build-all.sh
+$ ls -l bin
+```
+
 # Motivations
 
 In an all-connected world, the responsiveness of online services has reached a very high importance. Users of applications and web site visitors are not willing to wait anymore, they open multiple tabs in parallel from their search engine's first results, and start by visiting the first rendered one. While it seems that in 2021 this aspect of user experience is now well understood by site operators, they don't always have all the knobs to act on. Most of the time the focus is placed on application components and databases, but rarely on what is often considered as being part of the infrastructure. Worse, such low-level components are nowadays way more sollicitated than their application server counter parts, sometimes seeing 10 to 100 times more requests, which results in a much stronger impact on the overall response time.
@@ -24,5 +35,6 @@ The project is organized in folders, each of which will come with a general inde
   - [results](results/): some results shared by users, versioned, dated, with all required platform details
   - [scripts](scripts/): scripts that help setting up a benchmark environment, collect, aggregate and process results
   - [tools](tools/): links to various tools that are commonly helpful or needed to run benchmarks, with known limitations
+  - bin: executables from locally built embedded tools
 
 Please start with [howtos/](howtos/).

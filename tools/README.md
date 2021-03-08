@@ -3,6 +3,11 @@
 All tools can be used as long as their corner cases are identified,
 their impact observed, and either removed or explained in reports.
 
+Most tools are packaged with common operating systems, but some still require
+to be built by hand, and for this reason a build procedure is provided here
+for some of them. An easy way to build them all at once is to execute the
+`build-all.sh` script from the `tools` directory, which will deliver all
+binaries into `bin` under the top directory.
 
 ## Client side (load generator)
 

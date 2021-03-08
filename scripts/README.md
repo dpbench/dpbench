@@ -57,3 +57,26 @@ Output will be sent to mhz-proxy1-test13-64kB.out and the command to mhz-proxy1-
 1615228198 4131.803 4145.898 4203.000 4128.129 4181.092 4200.619 4192.496 4191.668
 1615228199 4200.306 4067.477 4200.441 4201.112 4194.046 4202.486 4193.853 4197.543
 ```
+
+## `tcp-sock.sh`
+This script displays every seconds, for TCP, the number of sockets in use,
+of orphans, and of time-wait entries. This can help detect a saturation
+problem or a lack of source ports for example.
+
+Example: collect TCP stats every second for 3 minutes, timestamped:
+
+```sh
+$ ./run-timed.sh -d -t 180 tcp proxy1 test13-64kB -- ./tcp-sock.sh
+Output will be sent to tcp-proxy1-test13-64kB.out and the command to tcp-proxy1-test13-64kB.cmd.
+### Starting at Mon Mar  8 19:38:47 CET 2021, redirecting to tcp-proxy1-test13-64kB.out ###
+1615228727 #inuse orphans timewait
+1615228728 56 0 297
+1615228729 434 0 397
+1615228730 450 0 397
+1615228731 448 0 397
+1615228732 448 0 397
+1615228733 448 0 397
+1615228734 450 0 397
+1615228735 56 0 549
+1615228736 52 0 549
+```

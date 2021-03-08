@@ -1,0 +1,3 @@
+[submodule "tools/clients/wrk2/source"]
+	path = tools/clients/wrk2/source
+	url = https://github.com/giltene/wrk2

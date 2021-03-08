@@ -16,6 +16,7 @@ The issues above affect most if not all tools and/or their environment. It is no
 
 All such issues will affect the average values but not all the values. This is why it is crucial to measure the load at least every second and to graph a few metrics to verify that everything works as desired. It is unfortunate that there are still a number of tools which do not report periodic values, so when using them the measurements need to be retrieved elsewhere (tested product or network traffic for example). As long as the graph shows a plateau, even with accidents in it that can all be explained, the plateau can become an acceptable value.
 
+Some clients are available as git submodules under the "client" subdirectory. In order to use them, just enter the directory and run "./build.sh", they will be downloaded and installed locally.
 
 ## Server side (load sink)
 

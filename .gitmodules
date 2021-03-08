@@ -4,3 +4,6 @@
 [submodule "tools/clients/h1load/source"]
 	path = tools/clients/h1load/source
 	url = https://github.com/wtarreau/h1load
+[submodule "tools/servers/source"]
+	path = tools/servers/httpterm/source
+	url = https://github.com/wtarreau/httpterm

@@ -1,3 +1,6 @@
 [submodule "tools/clients/wrk2/source"]
 	path = tools/clients/wrk2/source
 	url = https://github.com/giltene/wrk2
+[submodule "tools/clients/h1load/source"]
+	path = tools/clients/h1load/source
+	url = https://github.com/wtarreau/h1load

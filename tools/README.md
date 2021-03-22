@@ -152,7 +152,7 @@ comes to assembling multiple metrics.
 
 | Name | License | HTTP | SSL | Ramp-up/Stop | Stop on | Rate limiting | Periodic reports | Stats | Notes |
 |------|---------|------|-----|--------------|---------|---------------|------------------|-------|-------|
-|[h1load](https://github.com/wtarreau/h1load)| MIT     | 1.1  | No  | Both         | duration,req count,none|per-request,none| Yes (per-second) | cps, rps, avg TTFB/TTLB, percentiles |self pre-heating phase for accurate ramp-up|
+|[h1load](https://github.com/wtarreau/h1load)| MIT     | 1.1  | Yes | Both         | duration,req count,none|per-request,none| Yes (per-second) | cps, rps, avg TTFB/TTLB, percentiles |self pre-heating phase for accurate ramp-up|
 |[h2load](https://github.com/nghttp2/nghttp2)| MIT     | 1.1,2| Yes | Ramp-up      | duration,req count | connections,none | %-done only | avg bps/rps, min/max/mean/sd time |supports HTTP/1.1 pipelining, HTTP/1.1 not always reliable on very large objects|
 |[hey](https://github.com/rakyll/hey) | Apache  | 1.1,2| Yes | no           | duration,req count | yes | no              | percentiles | supports proxies and compression; requires a recent Go toolchain |
 |[httperf](https://github.com/httperf/httperf)|GPLv2   | 1.0,1.1  | Yes | no       | req count | yes         | no               | min/avg/max/stddev time, avg bps/rps|Requires lots of arguments|

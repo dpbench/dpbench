@@ -22,9 +22,10 @@ $ ./build.sh
 ```
 
 If everything goes well (it should), an `h1load` executable should appear into
-the `bin` subdirectory. There are very few dependencies (basically only the
-libc) so very often it's possible to just scp the binary to remote machines
-booted over the network or live USB sticks.
+the `bin` subdirectory at the top of the project. There are very few dependencies
+(basically only the libc and optionally the SSL library) so very often it's
+possible to just scp the binary to remote machines booted over the network or
+live USB sticks.
 
 
 # Starting h1load

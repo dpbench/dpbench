@@ -115,6 +115,14 @@ double the number of local sockets, or competition for running on
 certain CPUs.
 
 
+## Measurements
+
+Please check the [measures subdirectory](measures/) to find a few tools.
+These tools include network and CPU/memory monitoring tools. These ones
+are usually necessary to understand abnormal slowdowns or response time
+increases during test sessions.
+
+
 ## Reporting (graphs)
 
 Please see the [reporting subdirectory](reporting/) to find some

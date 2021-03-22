@@ -7,3 +7,6 @@
 [submodule "tools/servers/source"]
 	path = tools/servers/httpterm/source
 	url = https://github.com/wtarreau/httpterm
+[submodule "tools/measures/if_rate/source"]
+	path = tools/measures/if_rate/source
+	url = https://github.com/wtarreau/if_rate

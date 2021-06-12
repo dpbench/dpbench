@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 cd -P $(dirname $0)
 BIN="${PWD%/*/*/*}/bin"

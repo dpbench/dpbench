@@ -160,12 +160,12 @@ comes to assembling multiple metrics.
 
 | Name | License | HTTP | SSL | Ramp-up/Stop | Stop on | Rate limiting | Periodic reports | Stats | Notes |
 |------|---------|------|-----|--------------|---------|---------------|------------------|-------|-------|
-|[h1load](https://github.com/wtarreau/h1load)| MIT     | 1.1  | Yes | Both         | duration,req count,none|per-request,none| Yes (per-second) | cps, rps, avg TTFB/TTLB, percentiles |self pre-heating phase for accurate ramp-up|
-|[h2load](https://github.com/nghttp2/nghttp2)| MIT     | 1.1,2| Yes | Ramp-up      | duration,req count | connections,none | %-done only | avg bps/rps, min/max/mean/sd time |supports HTTP/1.1 pipelining, HTTP/1.1 not always reliable on very large objects|
+|[h1load](https://github.com/wtarreau/h1load)| MIT     | 1.1  | Yes | Both         | duration,req count, none|per-request, none| Yes (per-second) | cps, rps, avg TTFB/TTLB, percentiles |self pre-heating phase for accurate ramp-up|
+|[h2load](https://github.com/nghttp2/nghttp2)| MIT     | 1.1,2| Yes | Ramp-up      | duration,req count | connections, none | %-done only | avg bps/rps, min/max/mean/sd time |supports HTTP/1.1 pipelining, HTTP/1.1 not always reliable on very large objects|
 |[hey](https://github.com/rakyll/hey) | Apache  | 1.1,2| Yes | no           | duration,req count | yes | no              | percentiles | supports proxies and compression; requires a recent Go toolchain |
 |[httperf](https://github.com/httperf/httperf)|GPLv2   | 1.0,1.1  | Yes | no       | req count | yes         | no               | min/avg/max/stddev time, avg bps/rps|Requires lots of arguments|
 |[httpress](https://github.com/virtuozzo/httpress) | BSD-3 | 1.1  | Yes | no           | req count | no          | %-done only      | avg rps,bps,time | SSL support requires GNUTLS |
-|[plow](https://github.com/six-ddc/plow)| Apache-2.0 | 1.1 | Yes | no | duration,count,none | no | Yes (every 200ms) | rps,latency,pct,BPS | live graphs in browser, x86 & arm64 binaries provided|
+|[plow](https://github.com/six-ddc/plow)| Apache-2.0 | 1.1 | Yes | no | duration, count, none | no | Yes (every 200ms) | rps,latency,pct,BPS | live graphs in browser, x86 & arm64 binaries provided|
 |[wrk](https://github.com/wg/wrk)| Apache  | 1.1  | Yes | no           | duration | no | no | avg bps/rps, avg/max/std-dev time |LuaJit mandatory (no ARM64 support)|
 |[wrk2](https://github.com/giltene/wrk2)  | Apache  | 1.1  | Yes | no           | duration | mandatory | no | avg bps/rps, avg/max/std-dev time, corrected percentiles |LuaJit mandatory (no ARM64 support)|
 

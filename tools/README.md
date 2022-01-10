@@ -165,6 +165,7 @@ comes to assembling multiple metrics.
 |[hey](https://github.com/rakyll/hey) | Apache  | 1.1,2| Yes | no           | duration,req count | yes | no              | percentiles | supports proxies and compression; requires a recent Go toolchain |
 |[httperf](https://github.com/httperf/httperf)|GPLv2   | 1.0,1.1  | Yes | no       | req count | yes         | no               | min/avg/max/stddev time, avg bps/rps|Requires lots of arguments|
 |[httpress](https://github.com/virtuozzo/httpress) | BSD-3 | 1.1  | Yes | no           | req count | no          | %-done only      | avg rps,bps,time | SSL support requires GNUTLS |
+|[plow](https://github.com/six-ddc/plow)| Apache-2.0 | 1.1 | Yes | no | duration,count,none | no | Yes (every 200ms) | rps,latency,pct,BPS | live graphs in browser, x86 & arm64 binaries provided|
 |[wrk](https://github.com/wg/wrk)| Apache  | 1.1  | Yes | no           | duration | no | no | avg bps/rps, avg/max/std-dev time |LuaJit mandatory (no ARM64 support)|
 |[wrk2](https://github.com/giltene/wrk2)  | Apache  | 1.1  | Yes | no           | duration | mandatory | no | avg bps/rps, avg/max/std-dev time, corrected percentiles |LuaJit mandatory (no ARM64 support)|
 

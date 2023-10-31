@@ -82,7 +82,7 @@ Output will be sent to tcp-proxy1-test13-64kB.out and the command to tcp-proxy1-
 ```
 
 ## `set-irq.sh`
-This script enumerates all interrupts whose description matches a specific word in /proc/interrupts, and spreads them over the designated number of CPUs among the topmost ones. Each interrupt will be bound to a single core, to limit as much as possible the risk of overloading a core and switching to polling mode. It is limited to 64 cores. For example, in order to assign eth0 IRQs to the topmost 8 CPUs:
+This script enumerates all interrupts whose description matches a specific word in /proc/interrupts, and spreads them over the designated number of CPUs among the topmost ones. Each interrupt will be bound to a single core, to limit as much as possible the risk of overloading a core and switching to polling mode. It is limited to 256 CPUs. For example, in order to assign eth0 IRQs to the topmost 8 CPUs:
 ```sh
 $ ./set-irq.sh eth0 8
 ```

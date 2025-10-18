@@ -1,7 +1,7 @@
 #!/bin/bash
 
 nic="$1"; cpu="$2"; fcpu="$3"
-if [ -z "$nic" -o -z "$cpu" ]; then
+if [ -z "$nic" ] || [ -z "$cpu" ]; then
 	echo "Usage: ${0##*/} <nic> <nbcpu> [<firstcpu>]"
 	exit 1
 fi
@@ -61,7 +61,21 @@ for irq in ${irqs[@]}; do
 	fi
 
 	# count number of blocks and commas
-	blocks=$(< /proc/irq/254/smp_affinity)
+	# Find any available IRQ to determine the format
+	sample_irq=""
+	for sample in ${irqs[@]}; do
+		if [ -r "/proc/irq/$sample/smp_affinity" ]; then
+			sample_irq="$sample"
+			break
+		fi
+	done
+
+	if [ -z "$sample_irq" ]; then
+		echo "Error: Cannot access smp_affinity for any IRQ"
+		exit 1
+	fi
+
+	blocks=$(< /proc/irq/$sample_irq/smp_affinity)
 	set -- ${blocks//,/ /}
 	blocks=$#
 

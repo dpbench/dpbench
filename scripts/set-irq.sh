@@ -61,8 +61,8 @@ for irq in ${irqs[@]}; do
 	fi
 
 	# count number of blocks and commas
-	blocks=$(< /proc/irq/254/smp_affinity)
-	set -- ${blocks//,/ /}
+	blocks=$(< /proc/irq/$irq/smp_affinity)
+	set -- ${blocks//,/ }
 	blocks=$#
 
 	out=""

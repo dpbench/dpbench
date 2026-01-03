@@ -24,8 +24,8 @@ if [ -z "$fcpu" ]; then
 	fcpu=$((nproc - cpu))
 fi
 
-if [ $((fcpu + cpu - 1)) -gt 255 ]; then
-	echo "Supporting 256 CPUs max."
+if [ $((fcpu + cpu - 1)) -gt 4095 ]; then
+	echo "Supporting 4096 CPUs max."
 	exit 1
 fi
 

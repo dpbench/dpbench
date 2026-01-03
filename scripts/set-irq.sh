@@ -39,26 +39,9 @@ fi
 i=0;
 for irq in ${irqs[@]}; do
 	c=$((i % cpu + fcpu))
-	b0=0; b1=0; b2=0; b3=0; b4=0; b5=0; b6=0; b7=0
-	if [ $c -lt 32 ]; then
-		b0=$((1 << (c & 31)))
-	elif [ $c -lt 64 ]; then
-		b1=$((1 << (c & 31)))
-	elif [ $c -lt 96 ]; then
-		b2=$((1 << (c & 31)))
-	elif [ $c -lt 128 ]; then
-		b3=$((1 << (c & 31)))
-	elif [ $c -lt 160 ]; then
-		b4=$((1 << (c & 31)))
-	elif [ $c -lt 192 ]; then
-		b5=$((1 << (c & 31)))
-	elif [ $c -lt 224 ]; then
-		b6=$((1 << (c & 31)))
-	elif [ $c -lt 256 ]; then
-		b7=$((1 << (c & 31)))
-	else
-		echo "Warning: ignoring CPU out of range [0..255]: $c"
-	fi
+	m=$((1 << (c & 31)))
+	b=( )
+	b[$((c/32))]=$m
 
 	# count number of blocks and commas
 	blocks=$(< /proc/irq/$irq/smp_affinity)
@@ -66,15 +49,12 @@ for irq in ${irqs[@]}; do
 	blocks=$#
 
 	out=""
-	[ $blocks -le 7 ] || out="${out}$(printf "%08x," $b7)"
-	[ $blocks -le 6 ] || out="${out}$(printf "%08x," $b6)"
-	[ $blocks -le 5 ] || out="${out}$(printf "%08x," $b5)"
-	[ $blocks -le 4 ] || out="${out}$(printf "%08x," $b4)"
-	[ $blocks -le 3 ] || out="${out}$(printf "%08x," $b3)"
-	[ $blocks -le 2 ] || out="${out}$(printf "%08x," $b2)"
-	[ $blocks -le 1 ] || out="${out}$(printf "%08x," $b1)"
-	[ $blocks -le 0 ] || out="${out}$(printf "%08x" $b0)"
-
+	blk=$((blocks - 1))
+	while [ $blk -ge 0 ]; do
+		out="${out}$(printf "%08x" ${b[$blk]:-0})"
+		[ $blk -eq 0 ] || out="${out},"
+		((blk--))
+	done
 	echo "$out" > /proc/irq/$irq/smp_affinity
 	(( i++ ))
 done

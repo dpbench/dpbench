@@ -160,8 +160,9 @@ comes to assembling multiple metrics.
 
 | Name | License | HTTP | SSL | Ramp-up/Stop | Stop on | Rate limiting | Periodic reports | Stats | Notes |
 |------|---------|------|-----|--------------|---------|---------------|------------------|-------|-------|
-|[h1load](https://github.com/wtarreau/h1load)| MIT     | 1.1  | Yes | Both         | duration,req count, none|per-request, none| Yes (per-second) | cps, rps, avg TTFB/TTLB, percentiles |self pre-heating phase for accurate ramp-up|
+|[h1load](https://github.com/wtarreau/h1load)| MIT     | 1.1  | Yes | Both         | duration,req count, none|per-request, none| Yes (per-second) | cps, rps, avg TTFB/TTLB, percentiles, status codes |self pre-heating phase for accurate ramp-up|
 |[h2load](https://github.com/nghttp2/nghttp2)| MIT     | 1.1,2| Yes | Ramp-up      | duration,req count | connections, none | %-done only | avg bps/rps, min/max/mean/sd time |supports HTTP/1.1 pipelining, HTTP/1.1 not always reliable on very large objects|
+|[haload](https://github.com/haproxy/haproxy)| GPLv2   | TCP/QMux: 3,2,1.1,1.0,0.9; QUIC: 3,0.9 | Yes | Both | duration,req count, none | (planned) | Yes (per-second) | cps, rps, avg TTFB/TTLB, status codes | alt. build of haproxy (`make haload`) |
 |[hey](https://github.com/rakyll/hey) | Apache  | 1.1,2| Yes | no           | duration,req count | yes | no              | percentiles | supports proxies and compression; requires a recent Go toolchain |
 |[httperf](https://github.com/httperf/httperf)|GPLv2   | 1.0,1.1  | Yes | no       | req count | yes         | no               | min/avg/max/stddev time, avg bps/rps|Requires lots of arguments|
 |[httpress](https://github.com/virtuozzo/httpress) | BSD-3 | 1.1  | Yes | no           | req count | no          | %-done only      | avg rps,bps,time | SSL support requires GNUTLS |
@@ -174,5 +175,6 @@ comes to assembling multiple metrics.
 
 | Name | License | HTTP | SSL | Object size choice | Response time choice | Stats | POST draining | Notes |
 |------|---------|------|-----|-------------|---------------|-------|---------------|-------|
+|[haterm](https://github.com/haproxy/haproxy)| GPLv2 | TCP/QMux: 3,2,1.1,1.0,0.9; QUIC: 3,0.9 | Yes  | per-request | per-request | per-response | yes | Configured by URI. Supports chunking, caching, random data, random sizes; alt build of haproxy (`make haterm`) |
 |[httpterm](https://github.com/wtarreau/httpterm)| GPLv2 | 1.1/1.0/0.9 | No  | per-request | per-request | per-response | ~16kB max | Configured by URI. Supports chunking, caching, random data, random sizes |
 |[nginx](https://nginx.org/)| BSD-2 | 2.0/1.1/1.0/0.9 | Yes | per-file | no | no | via buffering | Omni-present and often sufficient for max-rps/max-bw. Check default tuning and disable logging however |
